@@ -13,7 +13,7 @@ def fastapi_server():
     Stops it after all tests are done.
     """
     # Start the FastAPI application
-    fastapi_process = subprocess.Popen(['python', 'main.py'])
+    fastapi_process = subprocess.Popen(['python3', 'main.py'])
     
     server_url = 'http://127.0.0.1:8000/'
     timeout = 30  # Wait up to 30 seconds for server to start
