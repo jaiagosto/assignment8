@@ -57,6 +57,7 @@ jobs:
     needs: security
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    environment: production
     steps:
       - uses: actions/checkout@v4
       
@@ -74,3 +75,5 @@ jobs:
             jaiagosto/assignment8:latest
             jaiagosto/assignment8:${{ github.sha }}
           platforms: linux/amd64,linux/arm64
+          cache-from: type=registry,ref=jaiagosto/assignment8:cache
+          cache-to: type=inline,mode=max
