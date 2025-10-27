@@ -30,6 +30,12 @@ def test_calculator_add(page, fastapi_server):
     # Click the Add button
     page.click('button:text("Add")')
     
+    # Wait for the result to appear (with timeout of 5 seconds)
+    page.wait_for_function(
+        "document.getElementById('result').innerText !== ''",
+        timeout=5000
+    )
+    
     # Check that the result is displayed correctly
     assert page.inner_text('#result') == 'Calculation Result: 15'
 
@@ -47,6 +53,12 @@ def test_calculator_divide_by_zero(page, fastapi_server):
     
     # Click the Divide button
     page.click('button:text("Divide")')
+    
+    # Wait for the error message to appear
+    page.wait_for_function(
+        "document.getElementById('result').innerText !== ''",
+        timeout=5000
+    )
     
     # Check that the error message is displayed
     assert page.inner_text('#result') == 'Error: Cannot divide by zero!'
